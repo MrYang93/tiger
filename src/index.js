@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from "./App.js";
+import Routers from "./routers.js";
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 ReactDOM.render(
-    <App/>, document.getElementById('app'));
+    <Routers/>, document.getElementById('root'));
