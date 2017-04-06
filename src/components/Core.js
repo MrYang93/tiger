@@ -15,16 +15,16 @@ class Core extends React.Component{
     this.props.accountPurchase();
   }
 
-  purchaseArr(){
+  purchaseArr(purchase,products){
     console.log('ccccccccccc');
-    let purchaseId = this.props.purchase;
+    let purchaseId = purchase;
     console.log('ddddddddd',purchaseId);
-    let products = this.props.products;
+    let newProducts = products;
     let purchaseList = [];
     for (var i = 0; i < purchaseId.length; i++) {
-      for (var j = 0; j < products.length; j++) {
-        if (purchaseId[i]==products[j]._id) {
-          purchaseList.push(products[j])
+      for (var j = 0; j < newProducts.length; j++) {
+        if (purchaseId[i]==newProducts[j]._id) {
+          purchaseList.push(newProducts[j])
         }
       }
     }
@@ -32,7 +32,7 @@ class Core extends React.Component{
   }
 
   render(){
-    let purchaseArr = this.purchaseArr().map(item=>
+    let purchaseArr = this.purchaseArr(this.props.purchase,this.props.products).map(item=>
        <li key={Math.random()}>
          <p>{item.name}</p>
          <img src={item.poster} alt="" />
