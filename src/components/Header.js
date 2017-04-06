@@ -1,5 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
+
+
 
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -87,6 +90,7 @@ class Header extends React.Component{
     })
   }
   render(){
+    console.log(store.getState());
     const styles = {
       title: {
           cursor: 'pointer',
@@ -124,7 +128,9 @@ class Header extends React.Component{
       <div>
         <AppBar
           title={<span style={styles.title}>标题</span>}
-          iconElementLeft={<IconButton><ActionHome /></IconButton>}
+          iconElementLeft={<IconButton>
+            <Link to="/" ><ActionHome /></Link>
+          </IconButton>}
           iconElementRight={rightIco}
         />
         <Dialog

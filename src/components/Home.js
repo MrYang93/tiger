@@ -1,54 +1,50 @@
 import React from 'react';
 import axios from 'axios';
-
+import {connect} from 'react-redux';
+import {accountProducts} from '../redux/actions/accountAction.js';
+import {accountCart} from '../redux/actions/accountAction.js';
+import '../css/home.css'
+accountCart
 
 
 class Home extends React.Component{
   constructor(){
     super();
-    this.state = {
-      cats:[]
-    }
 
   }
-  setSubmit(e){
-    e.preventDefault();
-    let category = {name: this.refs.category.value}
-    axios.post('http://api.duopingshidai.com/category',category)
-      .then( res => {this.getSubmit(),this.refs.category.value=""} )
 
-  }
   componentWillMount(){
-    this.getSubmit()
+    this.props.accountProducts();
   }
-  getSubmit(){
-    axios.get('http://api.duopingshidai.com/category')
-      .then( res =>
-        this.setState({cats: res.data.categories})
-      )
-      .catch(err=>console.log(err))
-  }
-  rmClick(_id){
-    axios.delete(`http://api.duopingshidai.com/category?id=${_id}`).then( res => this.getSubmit())
+
+  handleClick(products){
+    this.props.accountCart(products);
   }
 
   render(){
-    let catList = this.state.cats.map(
-      (item)=> <li key={item._id}> { item.name }
-        <button onClick={this.rmClick.bind(this,item._id)}>删除</button> </li>
-    )
-
+    let productsList = this.props.products.map( item =>
+      <li key={Math.random()} >
+        <p>{item.name}</p>
+        <img src={item.poster} alt="" />
+        <p>{item.summary}</p>
+        <span onClick = {this.handleClick.bind(this,item)}>购买</span>
+      </li>)
     return(
       <div>
-        <ul>
-          {catList}
+        <p className='test'>所有商品</p>
+        <div className='test_'></div>
+        <ul className='productsList'>
+          {productsList}
         </ul>
-        <form onSubmit={this.setSubmit.bind(this)}>
-          <input ref='category' type="text" />
-          <button>添加</button>
-        </form>
       </div>
     )
   }
 }
-export default Home;
+// export default Home;
+function mapStateToProps(state){
+  return {
+    products: state.products
+  }
+}
+
+export default connect(mapStateToProps,{accountProducts,accountCart})(Home);
