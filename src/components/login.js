@@ -50,6 +50,8 @@ class Login extends React.Component{
 
 //重定向,切换路由 ↓ + this.context.router.push(`/`) 实现单页面切换
 //↓ 这个就是吧router拿到这个组件中, 是  react-router 的底层知识
+//还可以用 browserHistory
+//import { browserHistory } from 'react-router'   browserHistory.push()
 Login.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
