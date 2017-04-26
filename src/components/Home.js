@@ -24,18 +24,20 @@ class Home extends React.Component{
   render(){
     let productsList = this.props.products.map( item =>
       <li key={Math.random()} >
-        <p>{item.name}</p>
+        <p className='name'>{item.name}</p>
         <img src={item.poster} alt="" />
-        <p>{item.summary}</p>
+        <p className='introduce'>{item.summary}</p>
         <span onClick = {this.handleClick.bind(this,item)}>购买</span>
       </li>)
     return(
       <div>
-        <p className='test'>所有商品</p>
-        <div className='test_'></div>
-        <ul className='productsList'>
-          {productsList}
-        </ul>
+        <div className='inner'>
+          <p className='test'>所有商品</p>
+          <div className='test_'></div>
+          <ul className='productsList'>
+            {productsList}
+          </ul>
+        </div>
       </div>
     )
   }

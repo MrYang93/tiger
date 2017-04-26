@@ -34,9 +34,9 @@ class Core extends React.Component{
   render(){
     let purchaseArr = this.purchaseArr(this.props.purchase,this.props.products).map(item=>
        <li key={Math.random()}>
-         <p>{item.name}</p>
+         <p className='name' >{item.name}</p>
          <img src={item.poster} alt="" />
-         <p>{item.summary}</p>
+         <p className='introduce' >{item.summary}</p>
        </li>)
     return(
       <div>

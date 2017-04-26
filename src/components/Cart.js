@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {accountBuy} from '../redux/actions/accountAction.js';
-
+import '../css/cart.css'
 
 
 class Cart extends React.Component{
@@ -29,10 +29,10 @@ class Cart extends React.Component{
     console.log(this.props);
     let productsList = this.props.cart.map( item =>
       <li key={Math.random()} >
-        <p>{item.name}</p>
+        <p className='name'>{item.name}</p>
         <img src={item.poster} alt="" />
-        <p>{item.summary}</p>
-        <p>价格:{item.price}</p>
+        <p className='introduce' >{item.summary}</p>
+        <p className='price' >价格:{item.price}</p>
       </li>)
     return(
       <div>
@@ -41,6 +41,7 @@ class Cart extends React.Component{
           <ul className='productsList'>
             {productsList}
           </ul>
+          <div className='clearfix'></div>
           <button className='submit'>结算</button>
         </form>
       </div>
