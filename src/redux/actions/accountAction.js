@@ -12,7 +12,7 @@ export function _accountName(data,userId) {
 //点击登陆时执行
 export function accountName(data) {
   return dispatch => {
-    axios.post(`http://tiger.haoduoshipin.com/user/${data.sig}`,data)
+    axios.post(`https://tiger.haoduoshipin.com/user/${data.sig}`,data)
       .then( res => {
         alert(res.data.msg),
         localStorage.setItem('userId', res.data.userId),
@@ -41,7 +41,7 @@ export function _accountOut() {
 //点击注销时执行
 export function accountOut() {
   return dispatch => {
-    axios.get('http://tiger.haoduoshipin.com/user/logout')
+    axios.get('https://tiger.haoduoshipin.com/user/logout')
     .then(res =>{
       localStorage.user = '';
       localStorage.userId = '';
@@ -62,7 +62,7 @@ export function _accountRefresh(res) {
 //页面刷新加载时执行
 export function accountRefrefsh(userId) {
   return dispatch => {
-    axios.get(`http://tiger.haoduoshipin.com/user/${userId}`)
+    axios.get(`https://tiger.haoduoshipin.com/user/${userId}`)
     .then(res =>{
       dispatch(_accountRefresh(res))
     })
@@ -73,7 +73,7 @@ export function accountRefrefsh(userId) {
 // 获取商品
 export function accountProducts(products){
   return dispatch => {
-    axios.get('http://tiger.haoduoshipin.com/products')
+    axios.get('https://tiger.haoduoshipin.com/products')
     .then( res => {
       dispatch({type: 'PRODUCTS', products: res.data.products})
     })
@@ -99,7 +99,7 @@ function _accountBuy(products){
 }
 export function accountBuy(data){
   return dispatch => {
-    axios.post('http://tiger.haoduoshipin.com/order/new',{userId:data.userId,'products':_accountBuy(data.products)})
+    axios.post('https://tiger.haoduoshipin.com/order/new',{userId:data.userId,'products':_accountBuy(data.products)})
     .then( res => {
       console.log(res);
       alert('购买成功');
@@ -123,7 +123,7 @@ function _accountPurchase(arr){
 }
 export function accountPurchase(){
   return dispatch => {
-    axios.get('http://tiger.haoduoshipin.com/orders')
+    axios.get('https://tiger.haoduoshipin.com/orders')
     .then( res => {
       console.log('bbbbbbbbbbbbb')
       dispatch({type: 'PURCHASE', purchase: _accountPurchase(res.data.orders)})
