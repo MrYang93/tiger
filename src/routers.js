@@ -2,7 +2,7 @@ import React from 'react';
 import {
     Router,
     Route,
-    browserHistory,
+    hashHistory,
     Redirect,
     IndexRoute
 } from 'react-router';
@@ -29,7 +29,7 @@ class Routers extends React.Component{
   render(){
 
     return(
-      <Router history={browserHistory}>
+      <Router history={hashHistory}>
         <Route path='/' component={App}>
           <IndexRoute component={Home}/>
           <Route path='/set' component={Set}/>
