@@ -19,7 +19,7 @@ class Set extends React.Component{
   setSubmit(e){
     e.preventDefault();
     let category = {name: this.refs.category.value}
-    axios.post('https://tiger.haoduoshipin/category',category)
+    axios.post('http://tiger.haoduoshipin/category',category)
       .then( res => {this.getSubmit(),this.refs.category.value=""} )
 
   }
@@ -27,7 +27,7 @@ class Set extends React.Component{
     this.getSubmit()
   }
   getSubmit(){
-    axios.get('https://tiger.haoduoshipin.com/cats')
+    axios.get('http://tiger.haoduoshipin.com/cats')
       .then( res =>
         this.setState({cats: res.data.cats})
       )
@@ -36,7 +36,7 @@ class Set extends React.Component{
 
   rmClick(_id){
     let index = this.state.cats.findIndex(item => item._id===_id)
-    axios.delete(`https://tiger.haoduoshipin.com/category?id=${_id}`)
+    axios.delete(`http://tiger.haoduoshipin.com/category?id=${_id}`)
     .then( res =>
       {this.state.cats.splice(index,1),
       this.setState( {cats: this.state.cats})}
